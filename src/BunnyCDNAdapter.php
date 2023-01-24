@@ -478,7 +478,7 @@ class BunnyCDNAdapter implements FilesystemAdapter, PublicUrlGenerator, Checksum
     public function publicUrl(string $path, Config $config): string
     {
         if (!$this->pullzone) {
-            throw new RuntimeException('In order to get a visible URL for a BunnyCDN object, you must pass the "pullzone_url" parameter to the BunnyCDNAdapter.');
+            throw new RuntimeException('In order to get a visible URL for a BunnyCDN object, a pullzone must passed to the BunnyCDNAdapter.');
         }
 
         return $this->pullzone->publicUrl($path);
@@ -500,7 +500,7 @@ class BunnyCDNAdapter implements FilesystemAdapter, PublicUrlGenerator, Checksum
     public function temporaryUrl(string $path, DateTimeInterface $expiresAt, array $urlParameters = [], string $allowForPath = ''): string
     {
         if (!$this->pullzone) {
-            throw new RuntimeException('In order to get a public URL, a pullzone must first be declared.');
+            throw new RuntimeException('In order to get a public URL, a pullzone must passed to the BunnyCDNAdapter.');
         }
         return $this->pullzone->temporaryUrl($path, $expiresAt, $urlParameters, $allowForPath);
     }
